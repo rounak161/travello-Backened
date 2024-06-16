@@ -1,4 +1,4 @@
-require("dotenv").config();
+ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -17,10 +17,16 @@ app.use(express.urlencoded({ extended: true }));
 // to serve images inside public folder
 app.use('/images', express.static('public/images'));
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Travello backend service!');
+});
+
 app.use("/auth", authController);
-app.use("/room", roomController)
-app.use('/upload', uploadController)
+app.use("/room", roomController);
+app.use('/upload', uploadController);
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log("Server has been started"));
+
